@@ -4,11 +4,13 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LOGIN</title>
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/styles.css' %}">
+    <title>index</title>
 </head>
 <body>
 <div class = "container">
-    <a>LOGIN</a>
+    <a>index</a>
     <table>
 {% for user in users %}
 <tr>
@@ -19,6 +21,7 @@
 </tr>
 {% endfor %}
 </table>
+<button>LOGIN</button>
 </div>
 </body>
 </html>

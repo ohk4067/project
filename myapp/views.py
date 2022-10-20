@@ -9,4 +9,10 @@ def test(request):
     context = {'users':user}
     print(context)
 
-    return render(request, "test.html", context)
+    return render(request,"test.html", context)
+
+def login(request):
+    user = User.objects.all()
+    context = {'users':user}
+
+    return render(request, "login.html", context)
