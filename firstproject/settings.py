@@ -52,6 +52,7 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = 'firstproject.urls'
+LOGIN_REDIRECT_URL = '/test'
 
 TEMPLATES = [
     {

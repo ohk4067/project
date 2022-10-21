@@ -9,7 +9,16 @@
     <title>LOGIN</title>
 </head>
 <body>
-    <input></input>
-    
+    <form action="{% url 'test' %}" method="post">
+    <div>
+        <input id="userid" name="userId" type="text"></input>
+        <label for="userid">id</label>
+    </div>
+    <div>
+        <input id="userpassword" name="userpassword" type="text"></input>
+        <label for="userpasswrod">password</label>
+    </div>
+    <button type="submit"></button>
+    </form>
 </body>
 </html>

@@ -19,4 +19,5 @@ import myapp.views
 urlpatterns = [
     path('admin/', admin.site.urls),
      path('',myapp.views.test,name="test"),
+     path('login',myapp.views.login,name="login"),
 ]
