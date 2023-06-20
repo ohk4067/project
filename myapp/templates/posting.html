@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/login.css' %}">
+    <script type="text/javascript" src="{% static 'script/index.js' %}"></script>
+    <title>LOGIN</title>
+</head>
+<body>
+    <h1>게시글 개별 페이지입니다</h1>
+    <p>{{post.postname}}</p>
+    <p>{{post.contents}}</p>
+    <!-- 이미지 보여주기 -->
+    {% if post.mainphoto %}
+        <img src = "{{ post.mainphoto.url }}" alt="" height="600">
+        <br>
+    {% endif %}
+    <a href="/index/">목록</a>
+</body>
+</html>

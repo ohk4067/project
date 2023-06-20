@@ -13,13 +13,14 @@
     <div class = "container">
         <a>index</a>
         <table>
+{% for user in users %}
             <tr>
-                <td>{{user.id}}</td>
                 <td>{{user.username}}</td>
                 <td>{{user.age}}</td>
                 <td>{{user.sex}}</td>
                 <td>{{user.email}}</td>
             </tr>
+{% endfor %}
         </table>
     </div>
 </body>

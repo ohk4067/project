@@ -6,37 +6,27 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     {% load static %}
     <link rel="stylesheet" type="text/css" href="{% static 'css/login.css' %}">
-    <script type="text/javascript" src="{% static 'script/index.js' %}"></script>
+    <script type="text/javascript" src="{% static 'script/login.js' %}"></script>
     <title>LOGIN</title>
 </head>
 <body>
-    <form action="{% url 'save' %}" method="post"> {% csrf_token %} 
-    <div>
-        <label for="userid">ID</label>
-        <input id="userid" name="userId" type="text"></input>
-    </div>
-    <div>
-        <label for="userpasswrod">password</label>
-        <input id="userpassword" name="userpassword" type="text"></input>
-    </div>
-    <div>
-        <label for="username">username</label>
-        <input id="username" name="username" type="text"></input>
-    </div>
-    <div>
-        <label for="sex">sex</label>
-        <input id="sex" name="sex" type="text"></input>
-    </div>
-    <div>
-        <label for="age">age</label>
-        <input id="age" name="age" type="text"></input>
-    </div>
-    <div>
-        <label for="email">email</label>
-        <input id="email" name="email" type="text"></input>
-    </div>
-
-        <button type="submit"></button>
+    <form method="POST" action="{% url 'login' %}"> 
+        {% csrf_token %} 
+        <div>
+            <label for="User">ID</label>
+            <input name="username" type="text">
+        </div>
+        <div>
+            <label for="User">PASSWORD</label>
+            <input name="password" type="password">
+        </div>
+        <div class="impo">
+            <button type="submit">LOGIN</button>
+        </div>
     </form>
+    <div class="impo">
+        <a href="/signup/">SING-UP</a>
+    </div>
+    {{ error_message }}
 </body>
 </html>
