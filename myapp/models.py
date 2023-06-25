@@ -17,7 +17,6 @@ class User(AbstractUser):
 
 class Post(models.Model):
 	no = models.BigAutoField(primary_key=True)
-	user = models.CharField(max_length = 150)
 	title = models.CharField(max_length = 150)
 	message = models.TextField()
 	image = models.ImageField(blank=True, null=True)
@@ -26,9 +25,8 @@ class Post(models.Model):
 
 class Subpost(models.Model):
 	comentno = models.BigAutoField(primary_key=True)
-	user = models.CharField(max_length = 150)
 	coment = models.TextField()
-	comentdate = models.DateField()
+	comentdate = models.DateTimeField()
 	comentwriter = models.CharField(max_length = 150,null=True)
 	post = models.ForeignKey(Post, on_delete=models.CASCADE,null=True)
 	

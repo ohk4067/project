@@ -18,9 +18,8 @@
         CONTENT<br>
         <textarea rows="10" cols="50" name="message"></textarea><br>
         <input type="file" name="image" value="IMAGE"><br>
-        <input type="text" name="writer" value="{{ user.first_name }}{{ user.last_name }}">
+        <input type="hidden" name="writer" value="{{ user.first_name }}{{ user.last_name }}">
         <input type="submit" value="POST">
-        {{ form.as_p }}
     </form>
     <a href="/">MENU</a>
 </body>

@@ -1,15 +1,17 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from django.views.decorators.csrf import csrf_exempt
-from .models import User
+from .models import Post
 from django.contrib.auth import authenticate,login,logout
 from .forms import SignUpForm
 from datetime import datetime
 
+
 # Create your views here.
 def index(request):
-        user = User.objects.all()
-        context = {'users':user}
+        # post = Post.objects.all()
+        post = Post.objects.order_by('-no')
+        context = {'posts':post}
         return render(request,"index.html", context)
 
 ## Login
@@ -45,14 +47,20 @@ def signup(request):
 
 ## Write
 def write(request):
-    if request.method == 'POST':
-        form = PostForm(request.POST)
-        if form.is_valid():
-            form.save()
-        return render(request, "index.html")
-    else:
-        form = PostForm()
-    return render(request, 'write.html', {'form': form})
+    if request.method == 'POST': 
+        todays = datetime.now()
+        title = request.POST.get('title')
+        message = request.POST.get('message')
+        image = request.POST.get('image')
+        writer = request.POST.get('writer')
+        my_data = Post(title=title, message=message, image=image, writer=writer,date=todays)
+        my_data.save()
+        return redirect("index")
+    return render(request, 'write.html')
+
+def posting(request, no):
+    post = Post.objects.get(no=no)
+    return render(request, 'posting.html', {'post':post})
 
 # blog.html 페이지를 부르는 blog 함수
 def blog(request):
@@ -60,13 +68,6 @@ def blog(request):
     postlist = Post.objects.all()
     # blog.html 페이지를 열 때, 모든 Post인 postlist도 같이 가져옴 
     return render(request, 'blog.html', {'postlist':postlist})
-
-# blog의 게시글(posting)을 부르는 posting 함수
-def posting(request, pk):
-    # 게시글(Post) 중 pk(primary_key)를 이용해 하나의 게시글(post)를 검색
-    post = Post.objects.get(pk=pk)
-    # posting.html 페이지를 열 때, 찾아낸 게시글(post)을 post라는 이름으로 가져옴
-    return render(request, 'posting.html', {'post':post})
 
 def save(request):
     # template = loader.get_template('save.html')

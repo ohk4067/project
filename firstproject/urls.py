@@ -27,8 +27,7 @@ urlpatterns = [
      path('logout',myapp.views.logout_view,name="logout"),
      path('save/',myapp.views.save,name="save"),
      path('new_post/', myapp.views.write),
-     path('blog/', myapp.views.blog, name="blog"),
-     path('blog/<int:pk>',myapp.views.posting,name="posting"),
+     path('posting/<int:no>', myapp.views.posting, name="posting"),
      path('signup/', myapp.views.signup, name='signup')
 ]
 

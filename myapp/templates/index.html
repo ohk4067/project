@@ -10,13 +10,13 @@
   <title>Bulletin Board</title>
 </head>
 <body>
-  <table>
+  <table class="logintable">
     <tr>
-      <th><h1>Bulletin Board</h1></th>
+      <th class="titleinfo"><h1>Bulletin Board</h1></th>
       {% if user.is_active %}
-      <th><a>{{ user.first_name }}{{ user.last_name }}</a><br><a href="{% url 'logout' %}">LOGOUT</a></th>
+      <th class="logininfo"><a>{{ user.first_name }}{{ user.last_name }}</a><br><a href="{% url 'logout' %}">LOGOUT</a></th>
       {% else %}
-      <th><a href="/login/">LOGIN</a><br><a href="/signup/">SIGNUP</a></th>
+      <th class="logininfo"><a href="/login/">LOGIN</a><br><a href="/signup/">SIGNUP</a></th>
 
       {% endif %}
     </tr>
@@ -27,18 +27,14 @@
       <th>Title</th>
       <th>Posted By</th>
     </tr>
+    {% for post in posts %}
     <tr>
-      <td>2</td>
-      <td>2023-06-01</td>
-      <td>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</td>
-      <td>Admin</td>
+      <td><a href="posting/{{post.no}}">{{post.no}}</td>
+      <td>{{post.date}}</td>
+      <td>{{post.title}}</td>
+      <td>{{post.writer}}</td>
     </tr>
-    <tr>
-      <td>1</td>
-      <td>2023-05-29</td>
-      <td>Just a friendly reminder about the upcoming meeting.</td>
-      <td>John Doe</td>
-    </tr>
+    {% endfor %}
     <!-- Add more rows for additional bulletin board entries -->
   </table>
   {% if user.is_active %}
