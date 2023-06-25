@@ -10,24 +10,17 @@
   <title>Bulletin Board</title>
 </head>
 <body>
-  <div class="benner">
-    <h1>Bulletin Board</h1>
-  </div>
-  {% if user.is_auhenticated %}
-  <p>HELLO {{ user.username }}</p>
-  <div class="benner">
-    <a href="index/">LOGOUT</a>
-  </div>
-  {% else %}
-  <p>HELLO {{ user.username }}</p>
-  <div class="benner">
-    <a href="/login/">LOGIN</a>
-  </div>
-  {% endif %}
-  <div class="benner">
-    <a href="{% url 'logout' %}">LOGOUT</a>
-  </div>
   <table>
+    <tr>
+      <th><h1>Bulletin Board</h1></th>
+      {% if user.is_active %}
+      <th><a>{{ user.first_name }}{{ user.last_name }}</a><br><a href="{% url 'logout' %}">LOGOUT</a></th>
+      {% else %}
+      <th><a href="/login/">LOGIN</a><br><a href="/signup/">SIGNUP</a></th>
+
+      {% endif %}
+    </tr>
+  <table class="mainpost">
     <tr>
       <th>No</th>
       <th>Date</th>
@@ -48,8 +41,12 @@
     </tr>
     <!-- Add more rows for additional bulletin board entries -->
   </table>
+  {% if user.is_active %}
   <div>
     <a href="/new_post/">POSTING</a>
   </div>
+  {% else %}
+    <a href="/login/">POSTING</a>
+  {% endif %}
 </body>
 </html>

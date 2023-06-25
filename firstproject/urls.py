@@ -22,14 +22,14 @@ from django.conf import settings
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-     path('index/',myapp.views.index,name="index"),
+     path('',myapp.views.index,name="index"),
      path('login/',myapp.views.login_view,name="login"),
-     path('',myapp.views.logout_view,name="logout"),
+     path('logout',myapp.views.logout_view,name="logout"),
      path('save/',myapp.views.save,name="save"),
      path('new_post/', myapp.views.write),
      path('blog/', myapp.views.blog, name="blog"),
      path('blog/<int:pk>',myapp.views.posting,name="posting"),
-     path('signup/', myapp.views.signup, name='signup'),
+     path('signup/', myapp.views.signup, name='signup')
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

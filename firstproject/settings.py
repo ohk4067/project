@@ -43,7 +43,8 @@ INSTALLED_APPS = [
 AUTH_USER_MODEL = 'myapp.User'
 
 AUTHENTICATION_BACKENDS = [
-    'myapp.backends.MyCustomBackend',
+    'myapp.authentication.MyCustomBackend',
+    'django.contrib.auth.backends.ModelBackend',
 ]
 
 MIDDLEWARE = [
@@ -58,7 +59,7 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = 'firstproject.urls'
-LOGIN_REDIRECT_URL = '/test'
+LOGIN_REDIRECT_URL = '/index'
 
 TEMPLATES = [
     {

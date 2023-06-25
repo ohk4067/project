@@ -1,27 +1,23 @@
-a {
-    float:right;
-}
-
-.benner {
-  float: left; width: 50%;
-}
-
 body {
     font-family: Arial, sans-serif;
   }
-  table {
+  .mainpost table {
     border-collapse: collapse;
     width: 100%;
   }
-  th, td {
+  .mainpost th, .mainpost td {
     padding: 8px;
     text-align: left;
     border-bottom: 1px solid #ddd;
   }
-  th {
+  .mainpost th {
     background-color: #f2f2f2;
   }
-  tr:hover {
+  .mainpost tr:hover {
     background-color: #f5f5f5;
   }
-
+a {
+  color: red;
+  font-size: 20px;
+  text-decoration: none;
+}

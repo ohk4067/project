@@ -4,6 +4,7 @@ from django.views.decorators.csrf import csrf_exempt
 from .models import User
 from django.contrib.auth import authenticate,login,logout
 from .forms import SignUpForm
+from datetime import datetime
 
 # Create your views here.
 def index(request):
@@ -45,20 +46,13 @@ def signup(request):
 ## Write
 def write(request):
     if request.method == 'POST':
-        if request.POST['mainphoto']:
-            new_article=Post.objects.create(
-                postname=request.POST['postname'],
-                contents=request.POST['contents'],
-                mainphoto=request.POST['mainphoto'],
-            )
-        else:
-            new_article=Post.objects.create(
-                postname=request.POST['postname'],
-                contents=request.POST['contents'],
-                mainphoto=request.POST['mainphoto'],
-            )
-        return redirect('/blog/')
-    return render(request, "write.html")
+        form = PostForm(request.POST)
+        if form.is_valid():
+            form.save()
+        return render(request, "index.html")
+    else:
+        form = PostForm()
+    return render(request, 'write.html', {'form': form})
 
 # blog.html 페이지를 부르는 blog 함수
 def blog(request):
