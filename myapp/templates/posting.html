@@ -10,16 +10,29 @@
     <title>LOGIN</title>
 </head>
 <body>
-    <h1>BLOG</h1>
-    <p>TILTE</p>
-    <p>{{post.title}}</p>
-    <p>CONTENT</p>
+  <h1>BLOG - DETAIL</h1>
+
+  <div class="post">
+    <h3>{{post.title}}</h3>
     <p>{{post.message}}</p>
-    <!-- 이미지 보여주기 -->
-    {% if post.mainphoto %}
-        <img src = "{{ post.mainphoto.url }}" alt="" height="600">
-        <br>
-    {% endif %}
-    <a href="/">목록</a>
+    <p>Posted By: {{post.writer}}</p>
+    <p>Date: {{post.date}}</p>
+    <div class="actions">
+      <a href="/edit-post">FIX</a>
+      <a href="/delete-post">DELETE</a>
+      <a href="/">MAIN</a>
+    </div>
+  </div>
+  <div>
+    <p>{{subpost.comentno}}</p>
+  </div>
+  <form method="POST">
+    {% csrf_token %}
+    COMENT
+    <input type="text" name="coment">
+    <input type="hidden" name="comentwriter" value="{{ user.first_name }}{{ user.last_name }}">
+    <input type="submit" value="POST">
+</form>
+
 </body>
 </html>

@@ -22,16 +22,16 @@
     </tr>
   <table class="mainpost">
     <tr>
-      <th>No</th>
-      <th>Date</th>
-      <th>Title</th>
-      <th>Posted By</th>
+      <th class="list1">No</th>
+      <th class="list2">Date</th>
+      <th class="list3">Title</th>
+      <th class="list4">Posted By</th>
     </tr>
     {% for post in posts %}
     <tr>
-      <td><a href="posting/{{post.no}}">{{post.no}}</td>
+      <td>{{post.no}}</td>
       <td>{{post.date}}</td>
-      <td>{{post.title}}</td>
+      <td><a class="link" href="posting/{{post.no}}">{{post.title}}</a></td>
       <td>{{post.writer}}</td>
     </tr>
     {% endfor %}

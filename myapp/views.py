@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from django.views.decorators.csrf import csrf_exempt
-from .models import Post
+from .models import Post,Subpost
 from django.contrib.auth import authenticate,login,logout
 from .forms import SignUpForm
 from datetime import datetime
@@ -39,6 +39,9 @@ def signup(request):
         form = SignUpForm(request.POST)
         if form.is_valid():
             user = form.save()
+            username = request.POST['username']
+            password = request.POST['password']
+            user = authenticate(request, username=username, password=password)
             login(request, user)
             return redirect('login')
     else:
@@ -59,8 +62,20 @@ def write(request):
     return render(request, 'write.html')
 
 def posting(request, no):
-    post = Post.objects.get(no=no)
-    return render(request, 'posting.html', {'post':post})
+    postview = Post.objects.get(no=no)
+    subpostview = Subpost.objects.filter(post=no)
+    context = {
+        'post' : postview,
+        'coment' : subpostview.first()
+    }
+    if request.method == 'POST': 
+        todays = datetime.now()
+        coment = request.POST.get('coment')
+        comentwriter = request.POST.get('comentwriter')
+        my_data = Subpost(coment=coment,comentdate=todays,comentwriter=comentwriter,post=postview)
+        my_data.save()
+        return redirect('posting',no=no)
+    return render(request, 'posting.html', context)
 
 # blog.html 페이지를 부르는 blog 함수
 def blog(request):

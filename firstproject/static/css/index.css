@@ -31,3 +31,16 @@ body {
     text-decoration: none;
     float: right;
   }
+.link {
+  color: black;
+  float: left;
+}
+.list1 {
+  width: 3%;
+}
+.list2 {
+  width: 10%;
+}
+.list4 {
+  width: 10%;
+}
